@@ -26,8 +26,24 @@ var albumMarconi = {
         { title: 'Ring, ring, ring', duration: '5:01' },
         { title: 'Fits in your pocket', duration: '3:21' },
         { title: 'Can you hear me now?', duration: '3:14' },
-        { title: 'Wrong phone number', duration: '2:15'}
-        
+        { title: 'Wrong phone number', duration: '2:15'}  
+    ]
+};
+
+// my example album
+
+var myAlbum = {
+    title: 'Time',
+    artist: 'Zerene Jade',
+    label: 'Future',
+    year: '2016',
+    albumArtUrl: 'assets/images/album_covers/18.png',
+    songs: [
+        { title: 'Where are you going?', duration: '3:24' },
+        { title: 'Where have you been?', duration: '3:55' },
+        { title: 'What is left?', duration: '2:57' },
+        { title: 'It will be', duration: '1:34' },
+        { title: 'It was', duration: '5:37' }
     ]
 };
 
@@ -62,6 +78,20 @@ var setCurrentAlbum = function(album) {
     }  
 };
 
+var albumCover = document.getElementsByClassName('album-cover-art')[0];
+var currentAlbumTitle = document.getElementsByClassName('album-view-title')[0];
+
+var changeAlbum = function() {
+        if (currentAlbumTitle.textContent === "The Colors") {
+            setCurrentAlbum(albumMarconi);
+        } else if (currentAlbumTitle.textContent === "The Telephone") {
+            setCurrentAlbum(myAlbum);
+        } else if (currentAlbumTitle.textContent === "Time") {
+            setCurrentAlbum(albumPicasso);
+        }  
+    };
+
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+    albumCover.addEventListener("click", changeAlbum);
 };
