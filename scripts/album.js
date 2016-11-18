@@ -31,7 +31,6 @@ var albumMarconi = {
 };
 
 // my example album
-
 var myAlbum = {
     title: 'Time',
     artist: 'Zerene Jade',
@@ -79,19 +78,22 @@ var setCurrentAlbum = function(album) {
 };
 
 var albumCover = document.getElementsByClassName('album-cover-art')[0];
-var currentAlbumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumCollection = {1: albumMarconi, 2: myAlbum, 3: albumPicasso};
+
+var clickNumber = 0;
+var clickCounter = function() {
+    clickNumber++
+    if (clickNumber > Object.keys(albumCollection).length) {
+        clickNumber = 1;
+    }
+};
 
 var changeAlbum = function() {
-        if (currentAlbumTitle.textContent === "The Colors") {
-            setCurrentAlbum(albumMarconi);
-        } else if (currentAlbumTitle.textContent === "The Telephone") {
-            setCurrentAlbum(myAlbum);
-        } else if (currentAlbumTitle.textContent === "Time") {
-            setCurrentAlbum(albumPicasso);
-        }  
-    };
+    setCurrentAlbum(albumCollection[clickNumber]);   
+};
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+    albumCover.addEventListener("click", clickCounter);
     albumCover.addEventListener("click", changeAlbum);
 };
