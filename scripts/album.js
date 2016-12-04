@@ -1,3 +1,12 @@
+var setSong = function(songNumber) {
+    currentlyPlayingSongNumber = songNumber + 1;
+    currentSongFromAlbum = currentAlbum.songs[songNumber];
+};
+
+var getSongNumberCell = function(number) {
+    return $('.song-item-number[data-song-number="' + number + '"]');
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template = 
         '<tr class="album-view-song-item">'
@@ -42,8 +51,7 @@ var createSongRow = function(songNumber, songName, songLength) {
             songNumberCell.html(playButtonTemplate); 
         }
     };
-
-    
+  
     var offHover = function(event) {
         var songNumberCell = $(this).find('.song-item-number');
         var songNumber = parseInt(songNumberCell.attr('data-song-number'));
@@ -57,11 +65,6 @@ var createSongRow = function(songNumber, songName, songLength) {
     $row.hover(onHover, offHover);
     return $row;
 };
-
-var getSongNumberCell = function(number) {
-    return $('.song-item-number[data-song-number="' + number + '"]');
-}
-
 
 var setCurrentAlbum = function(album) {
     currentAlbum = album;
@@ -115,11 +118,6 @@ var nextSong = function() {
     $nextSongNumberCell.html(pauseButtonTemplate);
     $lastSongNumberCell.html(lastSongNumber);
 };
-
-var setSong = function(songNumber) {
-    currentlyPlayingSongNumber = songNumber + 1;
-    currentSongFromAlbum = currentAlbum.songs[songNumber];
-}
 
 var previousSong = function() {
     var getLastSongNumber = function(index) {
