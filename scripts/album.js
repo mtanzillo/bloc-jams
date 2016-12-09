@@ -160,15 +160,18 @@ var previousSong = function() {
 };
 
 var togglePlayFromPlayerBar = function () {
-    if (currentSoundFile.isPaused()) {
-        getSongNumberCell(currentlyPlayingSongNumber).html(pauseButtonTemplate);
-        $playPauseButton.html(playerBarPauseButton);
-        currentSoundFile.play();
-    } else if (currentSoundFile) {
-        getSongNumberCell(currentlyPlayingSongNumber).html(playButtonTemplate);
-        $playPauseButton.html(playerBarPlayButton);
-        currentSoundFile.pause();   
+    if (currentSoundFile) {
+        if (currentSoundFile.isPaused()) {
+            getSongNumberCell(currentlyPlayingSongNumber).html(pauseButtonTemplate);
+            $playPauseButton.html(playerBarPauseButton);
+            currentSoundFile.play();
+        } else {
+            getSongNumberCell(currentlyPlayingSongNumber).html(playButtonTemplate);
+            $playPauseButton.html(playerBarPlayButton);
+            currentSoundFile.pause(); 
+        }  
     }
+    
 };
 
 var updatePlayerBarSong = function() {
